@@ -1,0 +1,96 @@
+S -> func funcs
+funcs -> func funcs
+funcs -> $
+func -> type IDN ( args ) func_body
+type -> int
+type -> short
+type -> long
+type -> char
+type -> float
+type -> double
+type -> void
+type -> unsigned type
+args -> type IDN arg
+args -> $
+arg -> , type IDN arg
+arg -> $
+func_body -> ;
+func_body -> block
+block -> { define_stmts stmts }
+define_stmts -> define_stmt define_stmts
+define_stmts -> $
+define_stmt -> type IDN init vars ;
+init -> = expression
+init -> $
+vars -> , IDN init vars
+vars -> $
+stmts -> stmt stmts
+stmts -> $
+stmt -> assign_stmt
+stmt -> jump_stmt
+stmt -> iteration_stmt
+stmt -> branch_stmt
+assign_stmt -> expression ;
+jump_stmt -> continue ;
+jump_stmt -> break ;
+jump_stmt -> return isnull_expr ;
+iteration_stmt -> while ( logical_expression ) block_stmt
+iteration_stmt -> for ( isnull_expr ; isnull_expr ; isnull_expr ) block_stmt
+iteration_stmt -> do block_stmt while ( logical_expression ) ;
+branch_stmt -> if ( logical_expression ) block_stmt result
+result -> else block_stmt
+result -> $
+logical_expression -> ! expression bool_expression
+logical_expression -> expression bool_expression
+bool_expression -> lop expression bool_expression
+bool_expression -> $
+lop -> &&
+lop -> ||
+branch_stmt -> switch ( IDN ) { case_stmt case_stmts default_stmt }
+case_stmts -> case_stmt case_stmts
+case_stmts -> $
+case_stmt -> case const : stmts
+default_stmt -> default : stmts
+block_stmt -> { stmts }
+isnull_expr -> expression
+isnull_expr -> $
+expression -> value operation
+operation -> compare_op value
+operation -> equal_op value
+operation -> $
+compare_op -> >
+compare_op -> >=
+compare_op -> <
+compare_op -> <=
+compare_op -> ==
+compare_op -> !=
+equal_op -> =
+equal_op -> +=
+equal_op -> -=
+equal_op -> *=
+equal_op -> /=
+equal_op -> %=
+value -> item value'
+value' -> + item value'
+value' -> - item value'
+value' -> $
+item -> factor item'
+item' -> * factor item'
+item' -> / factor item'
+item' -> % factor item'
+item' -> $
+factor -> ( value )
+factor -> IDN call_func
+factor -> const
+call_func -> ( es )
+call_func -> $
+es -> isnull_expr isnull_es
+isnull_es -> , isnull_expr isnull_es
+isnull_es -> $
+const -> num_const
+const -> FLOAT
+const -> CHAR
+const -> STR
+num_const -> INT10
+num_const -> INT8
+num_const -> INT16
