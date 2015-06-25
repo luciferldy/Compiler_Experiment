@@ -1,0 +1,435 @@
+S#int -> func funcs
+S#short -> func funcs
+S#long -> func funcs
+S#char -> func funcs
+S#float -> func funcs
+S#double -> func funcs
+S#void -> func funcs
+S#unsigned -> func funcs
+funcs#int -> func funcs
+funcs#short -> func funcs
+funcs#long -> func funcs
+funcs#char -> func funcs
+funcs#float -> func funcs
+funcs#double -> func funcs
+funcs#void -> func funcs
+funcs#unsigned -> func funcs
+func#int -> type IDN ( args ) func_body
+func#short -> type IDN ( args ) func_body
+func#long -> type IDN ( args ) func_body
+func#char -> type IDN ( args ) func_body
+func#float -> type IDN ( args ) func_body
+func#double -> type IDN ( args ) func_body
+func#void -> type IDN ( args ) func_body
+func#unsigned -> type IDN ( args ) func_body
+type#int -> int
+type#short -> short
+type#long -> long
+type#char -> char
+type#float -> float
+type#double -> double
+type#void -> void
+type#unsigned -> unsigned type
+args#int -> type IDN arg
+args#short -> type IDN arg
+args#long -> type IDN arg
+args#char -> type IDN arg
+args#float -> type IDN arg
+args#double -> type IDN arg
+args#void -> type IDN arg
+args#unsigned -> type IDN arg
+args#) -> $
+arg#, -> , type IDN arg
+arg#) -> $
+func_body#; -> ;
+func_body#{ -> block
+block#{ -> { define_stmts stmts }
+define_stmts#int -> define_stmt define_stmts
+define_stmts#short -> define_stmt define_stmts
+define_stmts#long -> define_stmt define_stmts
+define_stmts#char -> define_stmt define_stmts
+define_stmts#float -> define_stmt define_stmts
+define_stmts#double -> define_stmt define_stmts
+define_stmts#void -> define_stmt define_stmts
+define_stmts#unsigned -> define_stmt define_stmts
+define_stmts#continue -> $
+define_stmts#break -> $
+define_stmts#return -> $
+define_stmts#while -> $
+define_stmts#for -> $
+define_stmts#do -> $
+define_stmts#if -> $
+define_stmts#switch -> $
+define_stmts#( -> $
+define_stmts#IDN -> $
+define_stmts#FLOAT -> $
+define_stmts#CHAR -> $
+define_stmts#STR -> $
+define_stmts#INT10 -> $
+define_stmts#INT8 -> $
+define_stmts#INT16 -> $
+define_stmts#} -> $
+define_stmt#int -> type IDN init vars ;
+define_stmt#short -> type IDN init vars ;
+define_stmt#long -> type IDN init vars ;
+define_stmt#char -> type IDN init vars ;
+define_stmt#float -> type IDN init vars ;
+define_stmt#double -> type IDN init vars ;
+define_stmt#void -> type IDN init vars ;
+define_stmt#unsigned -> type IDN init vars ;
+init#= -> = expression
+init#, -> $
+init#; -> $
+vars#, -> , IDN init vars
+vars#; -> $
+stmts#continue -> stmt stmts
+stmts#break -> stmt stmts
+stmts#return -> stmt stmts
+stmts#while -> stmt stmts
+stmts#for -> stmt stmts
+stmts#do -> stmt stmts
+stmts#if -> stmt stmts
+stmts#switch -> stmt stmts
+stmts#( -> stmt stmts
+stmts#IDN -> stmt stmts
+stmts#FLOAT -> stmt stmts
+stmts#CHAR -> stmt stmts
+stmts#STR -> stmt stmts
+stmts#INT10 -> stmt stmts
+stmts#INT8 -> stmt stmts
+stmts#INT16 -> stmt stmts
+stmts#} -> $
+stmts#case -> $
+stmts#default -> $
+stmt#( -> assign_stmt
+stmt#IDN -> assign_stmt
+stmt#FLOAT -> assign_stmt
+stmt#CHAR -> assign_stmt
+stmt#STR -> assign_stmt
+stmt#INT10 -> assign_stmt
+stmt#INT8 -> assign_stmt
+stmt#INT16 -> assign_stmt
+stmt#continue -> jump_stmt
+stmt#break -> jump_stmt
+stmt#return -> jump_stmt
+stmt#while -> iteration_stmt
+stmt#for -> iteration_stmt
+stmt#do -> iteration_stmt
+stmt#if -> branch_stmt
+stmt#switch -> branch_stmt
+assign_stmt#( -> expression ;
+assign_stmt#IDN -> expression ;
+assign_stmt#FLOAT -> expression ;
+assign_stmt#CHAR -> expression ;
+assign_stmt#STR -> expression ;
+assign_stmt#INT10 -> expression ;
+assign_stmt#INT8 -> expression ;
+assign_stmt#INT16 -> expression ;
+jump_stmt#continue -> continue ;
+jump_stmt#break -> break ;
+jump_stmt#return -> return isnull_expr ;
+iteration_stmt#while -> while ( logical_expression ) block_stmt
+iteration_stmt#for -> for ( isnull_expr ; isnull_expr ; isnull_expr ) block_stmt
+iteration_stmt#do -> do block_stmt while ( logical_expression ) ;
+branch_stmt#if -> if ( logical_expression ) block_stmt result
+result#else -> else block_stmt
+result#continue -> $
+result#break -> $
+result#return -> $
+result#while -> $
+result#for -> $
+result#do -> $
+result#if -> $
+result#switch -> $
+result#( -> $
+result#IDN -> $
+result#FLOAT -> $
+result#CHAR -> $
+result#STR -> $
+result#INT10 -> $
+result#INT8 -> $
+result#INT16 -> $
+result#} -> $
+result#case -> $
+result#default -> $
+logical_expression#! -> ! expression bool_expression
+logical_expression#( -> expression bool_expression
+logical_expression#IDN -> expression bool_expression
+logical_expression#FLOAT -> expression bool_expression
+logical_expression#CHAR -> expression bool_expression
+logical_expression#STR -> expression bool_expression
+logical_expression#INT10 -> expression bool_expression
+logical_expression#INT8 -> expression bool_expression
+logical_expression#INT16 -> expression bool_expression
+bool_expression#&& -> lop expression bool_expression
+bool_expression#|| -> lop expression bool_expression
+bool_expression#) -> $
+lop#&& -> &&
+lop#|| -> ||
+branch_stmt#switch -> switch ( IDN ) { case_stmt case_stmts default_stmt }
+case_stmts#case -> case_stmt case_stmts
+case_stmts#default -> $
+case_stmt#case -> case const : stmts
+default_stmt#default -> default : stmts
+block_stmt#{ -> { stmts }
+isnull_expr#( -> expression
+isnull_expr#IDN -> expression
+isnull_expr#FLOAT -> expression
+isnull_expr#CHAR -> expression
+isnull_expr#STR -> expression
+isnull_expr#INT10 -> expression
+isnull_expr#INT8 -> expression
+isnull_expr#INT16 -> expression
+isnull_expr#; -> $
+isnull_expr#) -> $
+isnull_expr#, -> $
+expression#( -> value operation
+expression#IDN -> value operation
+expression#FLOAT -> value operation
+expression#CHAR -> value operation
+expression#STR -> value operation
+expression#INT10 -> value operation
+expression#INT8 -> value operation
+expression#INT16 -> value operation
+operation#> -> compare_op value
+operation#>= -> compare_op value
+operation#< -> compare_op value
+operation#<= -> compare_op value
+operation#== -> compare_op value
+operation#!= -> compare_op value
+operation#= -> equal_op value
+operation#+= -> equal_op value
+operation#-= -> equal_op value
+operation#*= -> equal_op value
+operation#/= -> equal_op value
+operation#%= -> equal_op value
+operation#, -> $
+operation#; -> $
+operation#&& -> $
+operation#|| -> $
+operation#) -> $
+compare_op#> -> >
+compare_op#>= -> >=
+compare_op#< -> <
+compare_op#<= -> <=
+compare_op#== -> ==
+compare_op#!= -> !=
+equal_op#= -> =
+equal_op#+= -> +=
+equal_op#-= -> -=
+equal_op#*= -> *=
+equal_op#/= -> /=
+equal_op#%= -> %=
+value#( -> item value'
+value#IDN -> item value'
+value#FLOAT -> item value'
+value#CHAR -> item value'
+value#STR -> item value'
+value#INT10 -> item value'
+value#INT8 -> item value'
+value#INT16 -> item value'
+value'#+ -> + item value'
+value'#- -> - item value'
+value'#> -> $
+value'#>= -> $
+value'#< -> $
+value'#<= -> $
+value'#== -> $
+value'#!= -> $
+value'#= -> $
+value'#+= -> $
+value'#-= -> $
+value'#*= -> $
+value'#/= -> $
+value'#%= -> $
+value'#, -> $
+value'#; -> $
+value'#&& -> $
+value'#|| -> $
+value'#) -> $
+item#( -> factor item'
+item#IDN -> factor item'
+item#FLOAT -> factor item'
+item#CHAR -> factor item'
+item#STR -> factor item'
+item#INT10 -> factor item'
+item#INT8 -> factor item'
+item#INT16 -> factor item'
+item'#* -> * factor item'
+item'#/ -> / factor item'
+item'#% -> % factor item'
+item'#+ -> $
+item'#- -> $
+item'#> -> $
+item'#>= -> $
+item'#< -> $
+item'#<= -> $
+item'#== -> $
+item'#!= -> $
+item'#= -> $
+item'#+= -> $
+item'#-= -> $
+item'#*= -> $
+item'#/= -> $
+item'#%= -> $
+item'#, -> $
+item'#; -> $
+item'#&& -> $
+item'#|| -> $
+item'#) -> $
+factor#( -> ( value )
+factor#IDN -> IDN call_func
+factor#FLOAT -> const
+factor#CHAR -> const
+factor#STR -> const
+factor#INT10 -> const
+factor#INT8 -> const
+factor#INT16 -> const
+call_func#( -> ( es )
+call_func#* -> $
+call_func#/ -> $
+call_func#% -> $
+call_func#+ -> $
+call_func#- -> $
+call_func#> -> $
+call_func#>= -> $
+call_func#< -> $
+call_func#<= -> $
+call_func#== -> $
+call_func#!= -> $
+call_func#= -> $
+call_func#+= -> $
+call_func#-= -> $
+call_func#*= -> $
+call_func#/= -> $
+call_func#%= -> $
+call_func#, -> $
+call_func#; -> $
+call_func#&& -> $
+call_func#|| -> $
+call_func#) -> $
+es#( -> isnull_expr isnull_es
+es#IDN -> isnull_expr isnull_es
+es#FLOAT -> isnull_expr isnull_es
+es#CHAR -> isnull_expr isnull_es
+es#STR -> isnull_expr isnull_es
+es#INT10 -> isnull_expr isnull_es
+es#INT8 -> isnull_expr isnull_es
+es#INT16 -> isnull_expr isnull_es
+es#, -> isnull_expr isnull_es
+es#) -> isnull_expr isnull_es
+isnull_es#, -> , isnull_expr isnull_es
+isnull_es#) -> $
+const#INT10 -> num_const
+const#INT8 -> num_const
+const#INT16 -> num_const
+const#FLOAT -> FLOAT
+const#CHAR -> CHAR
+const#STR -> STR
+num_const#INT10 -> INT10
+num_const#INT8 -> INT8
+num_const#INT16 -> INT16
+p#= -> =
+equal_op#+= -> +=
+equal_op#-= -> -=
+equal_op#*= -> *=
+equal_op#/= -> /=
+equal_op#%= -> %=
+value#( -> item value'
+value#IDN -> item value'
+value#FLOAT -> item value'
+value#CHAR -> item value'
+value#STR -> item value'
+value#INT10 -> item value'
+value#INT8 -> item value'
+value#INT16 -> item value'
+value'#+ -> + item value'
+value'#- -> - item value'
+value'#> -> $
+value'#>= -> $
+value'#< -> $
+value'#<= -> $
+value'#== -> $
+value'#!= -> $
+value'#= -> $
+value'#+= -> $
+value'#-= -> $
+value'#*= -> $
+value'#/= -> $
+value'#%= -> $
+value'#, -> $
+value'#; -> $
+value'#int -> $
+value'#short -> $
+value'#long -> $
+value'#char -> $
+value'#float -> $
+value'#double -> $
+value'#void -> $
+value'#unsigned -> $
+value'#&& -> $
+value'#|| -> $
+value'#continue -> $
+value'#break -> $
+value'#return -> $
+value'#while -> $
+value'#for -> $
+value'#do -> $
+value'#if -> $
+value'#switch -> $
+value'#( -> $
+value'#IDN -> $
+value'#FLOAT -> $
+value'#CHAR -> $
+value'#STR -> $
+value'#INT10 -> $
+value'#INT8 -> $
+value'#INT16 -> $
+value'#) -> $
+value'#{ -> $
+item#( -> factor item'
+item#IDN -> factor item'
+item#FLOAT -> factor item'
+item#CHAR -> factor item'
+item#STR -> factor item'
+item#INT10 -> factor item'
+item#INT8 -> factor item'
+item#INT16 -> factor item'
+item'#* -> * factor item'
+item'#/ -> / factor item'
+item'#% -> % factor item'
+item'#+ -> $
+item'#- -> $
+factor#( -> ( value )
+factor#IDN -> IDN call_func
+factor#FLOAT -> const
+factor#CHAR -> const
+factor#STR -> const
+factor#INT10 -> const
+factor#INT8 -> const
+factor#INT16 -> const
+call_func#( -> ( es )
+call_func#* -> $
+call_func#/ -> $
+call_func#% -> $
+es#( -> isnull_expr isnull_es
+es#IDN -> isnull_expr isnull_es
+es#FLOAT -> isnull_expr isnull_es
+es#CHAR -> isnull_expr isnull_es
+es#STR -> isnull_expr isnull_es
+es#INT10 -> isnull_expr isnull_es
+es#INT8 -> isnull_expr isnull_es
+es#INT16 -> isnull_expr isnull_es
+es#, -> isnull_expr isnull_es
+es#) -> isnull_expr isnull_es
+isnull_es#, -> , isnull_expr isnull_es
+isnull_es#) -> $
+const#INT10 -> num_const
+const#INT8 -> num_const
+const#INT16 -> num_const
+const#FLOAT -> FLOAT
+const#CHAR -> CHAR
+const#STR -> STR
+num_const#INT10 -> INT10
+num_const#INT8 -> INT8
+num_const#INT16 -> INT16

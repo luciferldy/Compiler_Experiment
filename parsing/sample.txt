@@ -1,0 +1,7 @@
+int main(){
+	int a;
+	a=10;
+	if(a>0){}
+	else{}
+	while(a>0){}
+}
